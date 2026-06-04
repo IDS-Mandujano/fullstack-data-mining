@@ -1,6 +1,9 @@
+Aquí tienes el código exacto, listo para copiar y pegar directamente en tu archivo `README.md`:
+
+```markdown
 # Pipeline Full Stack de Minería de Datos: Tasador Inmobiliario (Dubai Real Estate)
 
-**Universidad Politécnica de Chiapas (UPChiapas)** **Ingeniería de Software - 9.º D ** **Autor:** Jesús Eduardo Gutiérrez Mandujano (Matrícula: 233325)  
+**Universidad Politécnica de Chiapas (UPChiapas)** **Ingeniería de Software - 9.º Cuatrimestre (2026A)** **Autor:** Jesús Eduardo Gutiérrez Mandujano (Matrícula: 233325)  
 **Profesor:** Mtro. Ramsés Camas Nájera  
 
 ---
@@ -18,6 +21,7 @@ El proyecto está dividido en cuatro capas principales:
 ---
 
 ## 📁 Estructura del Repositorio
+```text
 proyecto-fullstack-data-mining-233325-gutierrez-mandujano/
 │
 ├── data/
