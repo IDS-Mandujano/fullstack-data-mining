@@ -95,7 +95,3 @@ Con el servidor Flask corriendo de fondo, abre el explorador de archivos, diríg
 
 * Haz clic en **Consultar Data Warehouse** para verificar la conexión OLAP con DuckDB.
 * Captura datos en el formulario y haz clic en **Calcular Precio y Zona** para realizar inferencias en vivo con los modelos de Machine Learning.
-
-```
-
-```
