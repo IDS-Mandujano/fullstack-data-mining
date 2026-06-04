@@ -3,8 +3,10 @@ Aquí tienes el código exacto, listo para copiar y pegar directamente en tu arc
 ```markdown
 # Pipeline Full Stack de Minería de Datos: Tasador Inmobiliario (Dubai Real Estate)
 
-**Universidad Politécnica de Chiapas (UPChiapas)** **Ingeniería de Software - 9.º D ** **Autor:** Jesús Eduardo Gutiérrez Mandujano (Matrícula: 233325)  
-**Profesor:** Mtro. Ramsés Camas Nájera  
+**Universidad Politécnica de Chiapas (UPChiapas)** <br>
+**Ingeniería de Software - 9.º D** <br>
+**Autor:** Jesús Eduardo Gutiérrez Mandujano (Matrícula: 233325) <br>
+**Profesor:** Mtro. Ramsés Camas Nájera <br>
 
 ---
 
