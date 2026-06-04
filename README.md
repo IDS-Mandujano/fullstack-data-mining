@@ -11,7 +11,10 @@ Aquí tienes el código exacto, listo para copiar y pegar directamente en tu arc
 ---
 
 ## 📌 Descripción del Proyecto
-Este proyecto es un sistema Full Stack de Minería de Datos que analiza y predice el comportamiento del mercado inmobiliario secundario en Dubai. El sistema implementa un ciclo de vida de datos completo (proceso KDD): desde la ingesta y preprocesamiento de los datos, pasando por el almacenamiento analítico en un Data Warehouse, hasta la inferencia en vivo mediante modelos de Machine Learning desplegados a través de una API REST y consumidos por una interfaz web.
+**Este proyecto es un sistema Full Stack de Minería de Datos que analiza y predice el comportamiento del mercado inmobiliario**
+**secundario en Dubai. El sistema implementa un ciclo de vida de datos completo (proceso KDD): desde la ingesta y**
+**preprocesamiento de los datos, pasando por el almacenamiento analítico en un Data Warehouse, hasta la inferencia en vivo**
+**mediante modelos de Machine Learning desplegados a través de una API REST y consumidos por una interfaz web.**
 
 ## 🏗️ Arquitectura del Sistema
 El proyecto está dividido en cuatro capas principales:
