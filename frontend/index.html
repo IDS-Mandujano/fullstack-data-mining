@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate - Minería de Datos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
+        .container { display: flex; gap: 20px; max-width: 1200px; margin: auto; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;}
+        button { background-color: #28a745; color: white; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #218838; }
+        #resultado { background: #e9ecef; padding: 15px; border-radius: 5px; display: none; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Tasador Inmobiliario (Dubai Real Estate)</h1>
+    
+    <div class="container">
+        <div class="box">
+            <h2>🏠 Zonas más caras (OLAP)</h2>
+            <button onclick="cargarOlap()">Consultar Data Warehouse</button>
+            <ul id="lista-olap"></ul>
+        </div>
+
+        <div class="box">
+            <h2>🤖 Predecir Propiedad</h2>
+            <form id="ml-form">
+                <label>Habitaciones:</label>
+                <input type="number" id="bedrooms" value="3">
+                
+                <label>Área (Sqft):</label>
+                <input type="number" id="area_sqft" value="1500">
+                
+                <label>Año de Construcción:</label>
+                <input type="number" id="year_built" value="2020">
+                
+                <label>Espacios de Parking:</label>
+                <input type="number" id="parking_spaces" value="2">
+                
+                <label>Distancia a Burj Khalifa (km):</label>
+                <input type="number" step="0.1" id="to_burj_khalifa_km" value="5.5">
+                
+                <label>Tipo de Propiedad:</label>
+                <select id="property_category">
+                    <option value="apartment">Apartamento</option>
+                    <option value="villa">Villa</option>
+                </select>
+
+                <label>Amueblado:</label>
+                <select id="furnishing">
+                    <option value="unfurnished">Sin amueblar</option>
+                    <option value="semi_furnished">Semi amueblado</option>
+                    <option value="fully_furnished">Totalmente amueblado</option>
+                </select>
+
+                <button type="submit">Calcular Precio y Zona</button>
+            </form>
+
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:5000/api';
+
+        async function cargarOlap() {
+            const res = await fetch(`${API_URL}/olap/top_areas`);
+            const data = await res.json();
+            const lista = document.getElementById('lista-olap');
+            lista.innerHTML = '';
+            data.forEach(item => {
+                lista.innerHTML += `<li><strong>${item.community}</strong>: $${item.precio_promedio.toLocaleString()} USD</li>`;
+            });
+        }
+
+        document.getElementById('ml-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const payload = {
+                bedrooms: parseInt(document.getElementById('bedrooms').value),
+                area_sqft: parseInt(document.getElementById('area_sqft').value),
+                year_built: parseInt(document.getElementById('year_built').value),
+                parking_spaces: parseInt(document.getElementById('parking_spaces').value),
+                to_burj_khalifa_km: parseFloat(document.getElementById('to_burj_khalifa_km').value),
+                property_category: document.getElementById('property_category').value,
+                furnishing: document.getElementById('furnishing').value
+            };
+
+            const res = await fetch(`${API_URL}/predecir`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+            const isFreehold = result.is_freehold === 1 ? 'Sí (Zona Libre)' : 'No (Solo locales)';
+            
+            const div = document.getElementById('resultado');
+            div.style.display = 'block';
+            div.innerHTML = `
+                <h3>Resultados de Inferencia:</h3>
+                <p>💰 <strong>Regresión (Precio):</strong> $${result.precio_estimado_usd.toLocaleString('en-US', {maximumFractionDigits:2})} USD</p>
+                <p>🌍 <strong>Clasificación (Freehold):</strong> ${isFreehold}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
